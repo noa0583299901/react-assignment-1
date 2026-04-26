@@ -1,32 +1,28 @@
-
-/* Post.module.css */
-
 .container {
-  border: 2px solid #3498db;    /* מסגרת בצבע כחול */
-  border-radius: 12px;          /* פינות מעוגלות */
-  padding: 16px;                /* מרווח פנימי */
-  margin: 20px auto;            /* מרווח חיצוני ומרכוז */
-  background-color: #ffffff;    /* רקע לבן נקי */
-  max-width: 350px;             /* הגבלת רוחב המכולה */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* צל עדין למראה מודרני */
-  
-  /* הגדרת גופן כללית */
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  direction: rtl;               /* תמיכה ביישור לימין לעברית */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 40rem;
+  text-align: center;
 }
 
-.name {
-  color: #2c3e50;               /* צבע טקסט כהה לשם */
-  font-size: 1.25rem;           /* גודל גופן מודגש מעט */
-  font-weight: bold;            /* כתב עבה */
-  margin-bottom: 8px;           /* מרווח מתחת לשם */
-  border-bottom: 1px solid #ececec; /* קו מפריד עדין */
-  padding-bottom: 4px;
+.author {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 0.5rem 0;
 }
 
 .content {
-  color: #5d6d7e;               /* צבע אפור-כחול לתוכן */
-  font-size: 1rem;              /* גודל טקסט סטנדרטי */
-  line-height: 1.5;             /* ריווח בין שורות לקריאות טובה */
-  margin-top: 10px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }

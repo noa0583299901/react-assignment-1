@@ -1,7 +1,9 @@
 import { useState } from "react";
 import classes from "./NewPost.module.css";
-
-function NewPost({ closedialog, onAdd }) {
+import { useNavigate ,useOutletContext} from "react-router";
+function NewPost() {
+  const { onAdd }=useOutletContext()
+let navigate=useNavigate()
   const [name, setName] = useState("");
   const [text, setText] = useState("");
 
@@ -9,6 +11,7 @@ function NewPost({ closedialog, onAdd }) {
     e.preventDefault();
     if (name.trim() && text.trim()) {
       onAdd(name, text);
+      navigate("/posts")
     }
   };
 
@@ -24,7 +27,7 @@ function NewPost({ closedialog, onAdd }) {
       </p>
       <p className={classes.actions}>
         <button type="submit" className="btn-add">Create Post</button>
-        <button type="button" className="btn-cancel" onClick={closedialog}>Cancel</button>
+        <button type="button" className="btn-cancel" onClick={()=> navigate("/posts")}>Cancel</button>
       </p>
     </form>
   );

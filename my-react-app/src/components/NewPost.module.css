@@ -1,34 +1,47 @@
 .form {
-  background-color: white;
-  padding: 1.5rem;
-  width: 25rem;
-  border-radius: 12px;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
 }
 
-.form p {
-  margin: 1rem 0;
+.form::before {
+  content: "New Post Creation";
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #c2185b;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #f8bbd0;
+  padding-bottom: 10px;
 }
 
 .form label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ad1457;
+  margin-bottom: 12px;
   display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-align: left;
 }
 
-.form input,
-.form textarea {
-  display: block;
+.form input, .form textarea {
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  padding: 18px;
+  border: 1px solid #f48fb1;
+  border-radius: 15px;
+  background-color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  transition: 0.3s;
+}
+
+.form input:focus, .form textarea:focus {
+  outline: none;
+  border-color: #ff5252;
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.1);
 }
 
 .actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 20px;
+  justify-content: flex-start;
 }

@@ -1,49 +1,61 @@
 import { useState } from "react";
 import classes from "./Post.module.css";
+import { useParams, useOutletContext, Link } from "react-router";
 
-function Post({ author, content, onDelete, onEdit }) {
+function Post() {
+  const { postId } = useParams();
+  const { posts, onEdit, onDelete } = useOutletContext();
+
+  const post = posts[Number(postId)];
+  
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(content);
+  const [editedContent, setEditedContent] = useState(post ? post.body : "");
 
-  function startEditHandler() {
-    setIsEditing(true);
+  if (!post) {
+    return <div className={classes.wrapper}><p>Post not found</p></div>;
   }
 
-  function stopEditHandler() {
-    setIsEditing(false);
-  }
+  const { title, body } = post;
 
   function saveHandler() {
-    onEdit(editedContent); 
+    onEdit(Number(postId), editedContent);
     setIsEditing(false);
   }
 
   return (
-    <div className={classes.container}>
-      <h2 className={classes.author}>{author}</h2>
-      
-      {isEditing ? (
-        <div className={classes.editArea}>
-          <textarea 
-            value={editedContent} 
-            onChange={(e) => setEditedContent(e.target.value)}
-            rows={3}
-          />
-          <div className={classes.actions}>
-            <button className="btn-add" onClick={saveHandler}>Save</button>
-            <button className="btn-cancel" onClick={stopEditHandler}>Cancel</button>
+    <div className={classes.wrapper}>
+      <div className={classes.container}>
+        <h2 className={classes.title}>{title}</h2>
+
+        {isEditing ? (
+          <div className={classes.editArea}>
+            <textarea
+              className={classes.textarea}
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              rows={5}
+            />
+            <div className={classes.actions}>
+              <button className="btn-add" onClick={saveHandler}>Save Changes</button>
+              <button className="btn-cancel" onClick={() => setIsEditing(false)}>Cancel</button>
+            </div>
           </div>
+        ) : (
+          <>
+            <p className={classes.body}>{body}</p>
+            <div className={classes.actions}>
+              <button className="btn-edit" onClick={() => setIsEditing(true)}>Edit Post</button>
+              <button className="btn-cancel" onClick={() => onDelete(Number(postId))}>Delete</button>
+            </div>
+          </>
+        )}
+        
+        <div className={classes.backNav}>
+            <Link to="/posts" className={classes.backLink}>
+              ← Back to All Posts
+            </Link>
         </div>
-      ) : (
-        <>
-          <p className={classes.content}>{content}</p>
-          <div className={classes.actions}>
-            
-            <button className="btn-edit" onClick={startEditHandler}>Edit</button>
-            <button className="btn-log" onClick={onDelete}>Delete</button>
-          </div>
-        </>
-      )}
+      </div>
     </div>
   );
 }
